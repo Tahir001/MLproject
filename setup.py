@@ -15,7 +15,7 @@ def get_requirements(file_path) -> List[str]:
     requirements = []
     with open(file_path) as file_obj: 
         requirements= file_obj.readlines()
-        requirements= [for req in requirements req.replace('\n', ' ')]
+        requirements= [req.replace('\n', ' ') for req in requirements]
 
 setup(
     name='mlproject'
