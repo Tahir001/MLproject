@@ -1,3 +1,6 @@
 pandas
 numpy
-seaborn 
+seaborn
+
+# Everytime the packages are being installed, this will startup setup.py
+-e .
