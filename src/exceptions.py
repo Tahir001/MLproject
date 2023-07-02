@@ -1,6 +1,6 @@
 # Any exception that is getting controlled, sys library will have that information 
 import sys
-import logging
+from src.logger import logging
 
 def error_message_detail(error, error_detail:sys):
     # All information about the exception is stored in the variable
