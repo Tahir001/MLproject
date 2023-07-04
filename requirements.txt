@@ -3,6 +3,6 @@ numpy
 seaborn
 matplotlib
 scikit-learn
-
+catboost
 # Everytime the packages are being installed, this will startup setup.py
 # e .
