@@ -1,6 +1,7 @@
 pandas
 numpy
 seaborn
+matplotlib
 
 # Everytime the packages are being installed, this will startup setup.py
--e .
+# e .
