@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from src.exceptions import CustomException
 from src.logger import logging
 
+
 @dataclass
 class DataIngestionConfig:
     # Inputs that we're giving to our data ingestion component -> Now it knows where to save these files

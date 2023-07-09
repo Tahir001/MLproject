@@ -5,6 +5,7 @@ matplotlib
 scikit-learn
 catboost
 xgboost
+dill
 
 # Everytime the packages are being installed, this will startup setup.py
 # e .
