@@ -42,13 +42,18 @@ class DataTransformation:
                 'lunch',
                 'test_preperation_course'
             ]
+
+            # Create a pipeline for numerical columns
+            # Impute the numerical columns using median, and then scale the features 
             num_pipeline = Pipeline(
                 steps=[
                     ('imputer', SimpleImputer(strategy='median'))
                     ('scaler', StandardScaler())
                 ]
             )
-
+            
+            # Create a pipeline for catergorical columns
+            # Impute missing values, encode categorical vars, and scale them 
             cat_pipeline = Pipeline(
                 steps = [
                     ('imputer', SimpleImputer(strategy='most_frequent')),
