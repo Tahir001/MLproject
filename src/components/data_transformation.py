@@ -43,7 +43,7 @@ class DataTransformation:
                 'race_ethnicity',
                 'parental_level_of_education',
                 'lunch',
-                'test_preperation_course'
+                'test_preparation_course'
             ]
 
             # Create a pipeline for numerical columns
@@ -79,6 +79,7 @@ class DataTransformation:
                 ]
             )
             return preprocessor
+        
         except Exception as e:
             raise CustomException(e, sys)
         
@@ -98,11 +99,11 @@ class DataTransformation:
             numerical_columns= ['writing_score', 'reading_score']
 
             # Drop the target variable from train and test data 
-            input_features_train_df = train_df.drop(columns=[target_column_name], axis=1)
+            input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
 
             # Do the same for test data 
-            input_features_test_df = test_df.drop(columns=[target_column_name], axis=1)
+            input_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
             target_feature_test_df = test_df[target_column_name]
 
             logging.info(
@@ -114,8 +115,8 @@ class DataTransformation:
             # fit_transform() applies the pre-processing defined in the instance onto the input array
             # and then transform that input array based on the fit. 
             # Then, we transform the test data using the same fit we got from the train data  
-            input_feature_train_arr=preprocessing_obj.fit_transform(input_features_train_df)
-            input_feature_test_arr=preprocessing_obj.transform(input_features_test_df)
+            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
+            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
             # Get train and test arrays 
             train_arr = np.c_[
@@ -136,5 +137,6 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path
             )
+        
         except Exception as e:
             raise CustomException(e, sys) 
