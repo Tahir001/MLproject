@@ -10,7 +10,6 @@ from src.exceptions import CustomException
 def save_object(file_path, obj):
     # Take the file path and object to create and save a pkl object 
     # inside of that corresponding file path 
-    # 
 
     try:
         dir_path = os.path.dirname(file_path)
