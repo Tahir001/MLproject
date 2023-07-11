@@ -50,7 +50,7 @@ class DataTransformation:
             # Impute the numerical columns using median, and then scale the features 
             num_pipeline = Pipeline(
                 steps=[
-                    ('imputer', SimpleImputer(strategy='median'))
+                    ('imputer', SimpleImputer(strategy='median')),
                     ('scaler', StandardScaler())
                 ]
             )
@@ -74,7 +74,7 @@ class DataTransformation:
             # Use Column transformer for this
             preprocessor = ColumnTransformer(
                 [
-                    ("num_pipeline", num_pipeline, numericical_columns)
+                    ("num_pipeline", num_pipeline, numericical_columns),
                     ("cat_pipeline", cat_pipeline, categorical_columns)
                 ]
             )
@@ -103,7 +103,7 @@ class DataTransformation:
 
             # Do the same for test data 
             input_features_test_df = test_df.drop(columns=[target_column_name], axis=1)
-            target_feature_test_df = test_df[target_feature_test_df]
+            target_feature_test_df = test_df[target_column_name]
 
             logging.info(
                 f"Applying preprocessing object on training dataframe and testing dataframe."
@@ -134,7 +134,7 @@ class DataTransformation:
             return (
                 train_arr,
                 test_arr,
-                self.data_transformation_config.preprocessor_obj_file_path,
+                self.data_transformation_config.preprocessor_obj_file_path
             )
         except Exception as e:
             raise CustomException(e, sys) 
