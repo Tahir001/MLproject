@@ -83,12 +83,13 @@ class DataTransformation:
             raise CustomException(e, sys)
         
     def initiate_data_transformation(self, train_path, test_path):
+
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
             logging.info("Read train and test data completed")
 
-            # Read in all of our preprocess object 
+            # Read in our preprocessing object 
             logging.info ("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
 
@@ -108,6 +109,14 @@ class DataTransformation:
                 f"Applying preprocessing object on training dataframe and testing dataframe."
             )
 
+            # Preprocessing_obj is an instance of get_data_transformer_object(), 
+            # which is used to transform the input features (train and test sets) using defined transformations 
+            # fit_transform() applies the pre-processing defined in the instance onto the input array
+            # and then transform that input array based on the fit. 
+            # Then, we transform the test data using the same fit we got from the train data  
+            input_feature_train_arr=preprocessing_obj.fit_transform(input_features_train_df)
+            input_feature_test_arr=preprocessing_obj.transform(input_features_test_df)
+
             # Get train and test arrays 
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
@@ -117,7 +126,8 @@ class DataTransformation:
             logging.info(f"Saved preprocessing object.")
 
             save_object(
-                file_path = self.data_transformation_config,
+                # Save this preprocessed object using our save function from utils.py  
+                file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj=preprocessing_obj
             )
             
@@ -129,8 +139,3 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys) 
-
-if __name__ == "__main__":
-    obj = DataTransformationConfig()
-    obj.get_data_transformer_object()
-
