@@ -63,7 +63,7 @@ class DataTransformation:
                     ('imputer', SimpleImputer(strategy='most_frequent')),
                     # One hot encoder as there isn't many categories for each class
                     ('one_hot_encoder', OneHotEncoder()),
-                    ('scaler', StandardScaler())
+                    ('scaler', StandardScaler(with_mean=False))
                 ]
             )
 
