@@ -31,10 +31,26 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
 
-    def initiate_model_trainer(self, train, test_array, preprocessor_path):
+    def initiate_model_trainer(self, train_array, test_array, preprocessor_path):
         try:
             # Log some info
             logging.info("Splitting training and test input data")
+            X_train, y_train, X_test, y_test = (
+                train_array[:,:-1],
+                train_array[:,-1],
+                test_array[:,:-1],
+                test_array[:, -1]
+            )
+            # Get models
+            models = {
+                "Random Forest": RandomForestRegressor(),
+                "Decision Tree": DecisionTreeRegressor(),
+                "Gradient Boosting": GradientBoostingRegressor(),
+                "Linear Regression": LinearRegression(),
+                "XGBRegressor": XGBRegressor(),
+                "CatBoosting Regressor": CatBoostRegressor(verbose=False),
+                "AdaBoost Regressor": AdaBoostRegressor(),
+            }
             pass
         except Exception as e: 
             raise CustomException(e, sys)
