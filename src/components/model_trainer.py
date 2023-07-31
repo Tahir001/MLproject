@@ -32,7 +32,7 @@ class ModelTrainer:
         # Get the configurations from the class above
         self.model_trainer_config = ModelTrainerConfig()
 
-    def initiate_model_trainer(self, train_array, test_array, preprocessor_path):
+    def initiate_model_trainer(self, train_array, test_array):
         try:
             # Log some info
             logging.info("Splitting training and test input data")
@@ -77,9 +77,8 @@ class ModelTrainer:
                 file_path=self.model_trainer_config.trained_model_file_path,
                 obj=best_model
             )
-
+            # Get the best models predicted value and evaluate the accuracy
             predicted=best_model.predict(X_test)
-
             r2_square = r2_score(y_test, predicted)
             return r2_square
         
