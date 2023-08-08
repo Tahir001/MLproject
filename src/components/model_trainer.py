@@ -34,7 +34,7 @@ class ModelTrainer:
 
     def initiate_model_trainer(self, train_array, test_array):
         try:
-            # Log some info
+            # Split dataset into train and test split
             logging.info("Splitting training and test input data")
             X_train, y_train, X_test, y_test = ( 
                 # Extract all of the columns besides last for training
