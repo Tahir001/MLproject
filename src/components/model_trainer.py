@@ -21,6 +21,7 @@ from src.exceptions import CustomException
 from src.logger import logging
 from src.utils import save_object, evaluate_models
 
+# define a dataclass
 @dataclass
 class ModelTrainerConfig:
     # Define configurations -> path for where to save the trained model
